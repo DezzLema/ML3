@@ -10,9 +10,7 @@ from sklearn.compose import ColumnTransformer
 
 
 def load_communities_data():
-    """
-    Загрузка и подготовка данных Communities and Crime
-    """
+    # Загрузка и подготовка данных Communities and Crime
     # Загрузка данных
     column_names = [
         'state', 'county', 'community', 'communityname', 'fold',
@@ -70,9 +68,7 @@ def load_communities_data():
 
 
 def preprocess_data(X, y):
-    """
-    Предобработка данных
-    """
+    # Предобработка данных
     # Заполнение пропущенных значений
     numeric_imputer = SimpleImputer(strategy='median')
 
@@ -87,7 +83,7 @@ def preprocess_data(X, y):
 
 
 # Загрузка и подготовка данных
-print("Загрузка данных...")
+print("Загрузка данных")
 X, y = load_communities_data()
 X, y = preprocess_data(X, y)
 
@@ -96,13 +92,15 @@ print(f"Размерность целевой переменной: {y.shape}")
 print(f"Количество признаков: {X.shape[1]}")
 
 # 1) Разделение на тестовую и обучающие выборки
-n_samples = X.shape[0]
-indices = np.arange(n_samples)
-np.random.shuffle(indices)
+n_samples = X.shape[0]  # Общее количество наблюдений
+indices = np.arange(n_samples)  # Массив индексов от 0 до n_samples-1
+np.random.shuffle(indices)  # Перемешиваем индексы случайным образом для того чтобы избежать упорядочности данных
 
+# Применяем перемешанные индексы к X и y
 X_shuffled = X.iloc[indices]
 y_shuffled = y.iloc[indices]
 
+# Разделяем перемешанные данные
 train_size = int(n_samples * 0.8)
 X_train = X_shuffled[:train_size]
 X_test = X_shuffled[train_size:]
@@ -213,7 +211,6 @@ best_r2 = r2_test_ridge[best_index]
 
 print(f"\nНаилучший alpha: {best_alpha:.4f}")
 print(f"Наилучший R² на тестовой выборке: {best_r2:.4f}")
-
 
 # Сравнение всех моделей
 print("\n=== СРАВНЕНИЕ МОДЕЛЕЙ ===")

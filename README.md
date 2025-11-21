@@ -173,7 +173,3 @@ StandardScaler() – нормализует признаки (важно для 
 Ridge(alpha=α) – линейная регрессия с L2-регуляризацией
 
 ![alt text](Screen_4.png)
-
-<p align="center">
-  <img src="Screen_5.png" />
-</p>
